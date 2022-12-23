@@ -8,17 +8,20 @@
 @endsection
 
 @section('content_header')
-       <h1> Create teacher   </h1>
+       <h1> edit teacher   </h1>
 @endsection
 @section('content')
 
-<form action="{{route('teachers.edit')}}"  method="POST">
-  @csrf
   
-  <form action="/action_page.php">
+  <form method="POST">
+@csrf
+<div class="form-group">
+      <label for="fullname">full name:</label>
+      <input type="text" class="form-control"  value="{{old('registration_number',$teacher->fullname)}}" name="fullname">
+    </div> 
     <div class="form-group">
-      <label for="">full Name:</label>
-      <input type="text" class="form-control"  value="{{$teacher->fullname}}" name="fullname">
+      <label for="fullname">registration number:</label>
+      <input type="text" class="form-control"  value="{{old('registration_number',$teacher->registration_number)}}" name="fullname">
     </div> 
     <div class="form-group">
     <label >specialitee:</label>

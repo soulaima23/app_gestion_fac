@@ -15,7 +15,9 @@ class EmployeeController extends Controller
     public function index()
     {
         $employes=Employee::all();
-        return view ('employee.index',compact('employes'));    }
+        return view ('employee.index')->with ([
+            'employee'=>$employes
+        ]);    }
 
     /**
      * Show the form for creating a new resource.
@@ -45,9 +47,10 @@ class EmployeeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Employee $employee)
     {
-        //
+          return view('employee.show',compact('employee'));
+
     }
 
     /**
@@ -56,9 +59,10 @@ class EmployeeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Employee $employee)
     {
-        //
+        return view('employee.edit',compact('employee'));
+
     }
 
     /**
@@ -70,7 +74,13 @@ class EmployeeController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'nom' => 'required',
+            ]);
+            $emploee->update($request->all());
+            return redirect()->route('teachers.index')
+            ->with('success','Employee mise à jour avec succès');
+    
     }
 
     /**
@@ -81,6 +91,8 @@ class EmployeeController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $employee = employees::find($id);
+        $employee->delete();
+        return redirect('/');
     }
 }

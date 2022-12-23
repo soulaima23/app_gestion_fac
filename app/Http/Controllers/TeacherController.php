@@ -53,9 +53,11 @@ class TeacherController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Teacher $teacher)
     {
-        return view('teachers.show',compact('teacher'));   }
+        return view('teachers.show',compact('teacher'));
+
+   }
 
     /**
      * Show the form for editing the specified resource.
@@ -63,10 +65,10 @@ class TeacherController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Teacher $teacher)
     {
        
-        return view('teachers.edit');
+        return view('teachers.edit' ,compact ('teacher'));
     }
 
     /**

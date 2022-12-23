@@ -15,32 +15,33 @@
   
   <form action="/action_page.php">
     <div class="form-group">
-      <label for="">full Name:</label>
-      <input type="text" class="form-control"   name="fullname">
+        <h3> {{$teacher->fullname}}</h3>
+      <label >registration number:</label>
+      <input  class="form-control"  value="{{$teacher->registration_number}}" >
     </div> 
     <div class="form-group">
     <label >specialitee:</label>
-      <input type="text" class="form-control"  name="specialitee">
+      <input type="text" class="form-control"  value="{{$teacher->specialitee}}" name="specialitee">
     </div>
     <div class="form-group">
       <label >contrat:</label>
-      <input type="text" class="form-control" name="contrat">
+      <input type="text" class="form-control"  value="{{$teacher->contrat}}" name="contrat">
     </div>
     <div class="form-group">
       <label >phone:</label>
-      <input type="text" class="form-control" name="phone">
+      <input type="text" class="form-control"  value="{{$teacher->phone}}" name="phone">
     </div>
     <div class="form-group">
       <label >address:</label>
-      <input type="text" class="form-control" name="address">
+      <input type="text" class="form-control"  value="{{$teacher->address}}" name="address">
     </div>
     <div class="form-group">
       <label >city:</label>
-      <input type="text" class="form-control"  name="city">
+      <input type="text" class="form-control"  value="{{$teacher->city}}" name="city">
     </div>
     <div class="form-group">
       <label >niveau:</label>
-      <input type="text" class="form-control" name="niveau">
+      <input type="text" class="form-control"  value="{{$teacher->niveau}}" name="niveau">
     </div>
     @csrf
     <button type="submit" class="btn btn-default">Submit</button>

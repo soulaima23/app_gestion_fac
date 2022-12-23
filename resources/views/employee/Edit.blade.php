@@ -1,26 +1,64 @@
-@extends('contacts.layout')
+@extends('adminlte::page')
+
+
+@section('title')
+
+Update Employee | laravel university managment APP
+
+@endsection
+
+@section('content_header')
+       <h1> Update Employee   </h1>
+@endsection
 @section('content')
- 
-<div class="card">
-  <div class="card-header">Contactus Page</div>
-  <div class="card-body">
-      
-      <form action="{{ url('contact/' .$contacts->id) }}" method="post">
-        {!! csrf_field() !!}
-        @method("PATCH")
-        <input type="hidden" name="id" id="id" value="{{$employees->id}}" id="id" />
-        <label>Full Name</label></br>
-        <input type="text" name="name" id="name" value="{{$contacts->name}}" class="form-control"></br>
-        <label>depart</label></br>
-        <input type="text" name="address" id="address" value="{{$contacts->address}}" class="form-control"></br>
-        <label>Hire date</label></br>
-        <input type="text" name="mobile" id="mobile" value="{{$contacts->mobile}}" class="form-control"></br>
-        <input type="submit" value="Update" class="btn btn-success"></br>
-    </form>
-   
-  </div>
+
+  
+  <form action="/action_page.php">
+  <div class="form-group">
+
+<label for="">full name:</label>
+<input type="text" class="form-control" value="{{$employee->fullname}}"   name="registration_number">
 </div>
-<th>{{$employee->id}}</th>
-      <td>{{$employee->fullname}}</td>
-      <td>{{$employee->depart}}</td>
-      <td>{{$employee->hire_date}}</td>
+    <div class="form-group">
+
+      <label for="">registration number:</label>
+      <input type="text" class="form-control" value="{{$employee->registration_number}}"   name="registration_number">
+    </div>
+    <div class="form-group">
+      <label >departement:</label>
+      <input type="text" class="form-control"  value="{{$employee->depart}}"  name="departement">
+    </div>
+    
+    
+    <div class="form-group">
+      <label >hire date:</label>
+      <input type="text" class="form-control" value="{{$employee->hire_date}}" name="hire_date">
+    </div>
+    <div class="form-group">
+      <label >phone:</label>
+      <input type="text" class="form-control" value="{{$employee->phone}}" name="phone">
+    </div>
+    
+    <div class="form-group">
+      <label >address:</label>
+      <input type="text" class="form-control" value="{{$employee->address}}" name="address">
+    </div>
+    <div class="form-group">
+      <label >city:</label>
+      <input type="text" class="form-control" value="{{$employee->city}}" name="city">
+    </div>
+    <div class="form-group">
+      <label >created at:</label>
+      <input type="text" class="form-control"  value="{{$employee->created_at}}"name="created_at">
+    </div>
+    <div class="form-group">
+      <label >updated at :</label>
+      <input type="text" class="form-control" value="{{$employee->updated_at}}" name="updated_at">
+    </div>
+    
+    @csrf
+    <button type="submit" class="btn btn-default">Submit</button>
+  </form>
+
+        </form>    
+         @endsection
