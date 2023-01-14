@@ -3,49 +3,69 @@
 
 @section('title')
 
-    edit teacher | laravel university managment APP
+    Show teacher | laravel university managment APP
 
 @endsection
 
-@section('content_header')
-       <h1> Create teacher   </h1>
-@endsection
 @section('content')
+    <div class="row">
+        <div class="col-lg-12 margin-tb">
+            <div class="float-start">
+                <h2>Show details</h2>
+            </div>
+            <div class="float-end">
+                <a class="btn btn-outline-primary" href="{{ route('Teachers.index') }}"> Back</a>
+            </div>
+        </div>
+    </div>
+   
+    <div class="row">
+        <h1>{{ $teacher->name }}</h1>
+        <div class="col-xs-12 col-sm-12 col-md-12">
+            <div class="form-group">
+                <strong>registration_number:</strong>
+                {{ $teacher->registration_number }}
+            </div>
+        </div>
+      
+        <div class="col-xs-12 col-sm-12 col-md-12">
+            <div class="form-group">
+                <strong>mail:</strong>
+                {{ $teacher->mail }}
+            </div>
+        </div>
+       
+        <div class="col-xs-12 col-sm-12 col-md-12">
+            <div class="form-group">
+                <strong>phone:</strong>
+                {{ $teacher->phone }}
+            </div>
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-12">
+            <div class="form-group">
+                <strong>Address:</strong>
+                {{ $teacher->address }}
+            </div>
+        </div>
+       
+        
+        <div class="col-xs-12 col-sm-12 col-md-12">
+            <div class="form-group">
+                <strong>type teacher:</strong>
+{{ $teacher->type->name }}
+        </div>
+        </div>
 
-  
-  <form action="/action_page.php">
-    <div class="form-group">
-        <h3> {{$teacher->fullname}}</h3>
-      <label >registration number:</label>
-      <input  class="form-control"  value="{{$teacher->registration_number}}" >
-    </div> 
-    <div class="form-group">
-    <label >specialitee:</label>
-      <input type="text" class="form-control"  value="{{$teacher->specialitee}}" name="specialitee">
-    </div>
-    <div class="form-group">
-      <label >contrat:</label>
-      <input type="text" class="form-control"  value="{{$teacher->contrat}}" name="contrat">
-    </div>
-    <div class="form-group">
-      <label >phone:</label>
-      <input type="text" class="form-control"  value="{{$teacher->phone}}" name="phone">
-    </div>
-    <div class="form-group">
-      <label >address:</label>
-      <input type="text" class="form-control"  value="{{$teacher->address}}" name="address">
-    </div>
-    <div class="form-group">
-      <label >city:</label>
-      <input type="text" class="form-control"  value="{{$teacher->city}}" name="city">
-    </div>
-    <div class="form-group">
-      <label >niveau:</label>
-      <input type="text" class="form-control"  value="{{$teacher->niveau}}" name="niveau">
-    </div>
-    @csrf
-    <button type="submit" class="btn btn-default">Submit</button>
-  </form>
-
-        </form>    
-         @endsection
+        <div class="col-xs-12 col-sm-12 col-md-12">
+            <div class="form-group">
+                <strong>created at:</strong>
+                {{ $teacher->created_at }}
+            </div>
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-12">
+            <div class="form-group">
+                <strong>updated at:</strong>
+                {{ $teacher->updated_at}}
+            </div>
+        </div>
+@endsection

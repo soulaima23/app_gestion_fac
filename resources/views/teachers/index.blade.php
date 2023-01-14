@@ -8,7 +8,7 @@
 @endsection
 
 @section('content_header')
-       <h1> list of type teacher   </h1>
+       <h1> list of teachers   </h1>
 @endsection
 
 
@@ -25,43 +25,48 @@
     </div>
  </div>
 <div class="card-body">
-  <h4> <a class="btn btn-primary"href="{{route('Teachers.create')}}" type="button">Add new teacher</a>  </h4>    
+<a class="btn btn-outline-primary" href="http://127.0.0.1:8000/admin/home"> Back to HOME</a>
+
+<a class="btn btn-outline-primary" href="{{ route('Teachers.create') }}"> Create new teacher</a>
+  </h4>
+
+</div>
+@if ($message = Session::get('success'))
+        <div class="alert alert-success">
+            <p>{{ $message }}</p>
+        </div>
+    @endif
+
 <table id="myTable" class="table table-bordered table-stripped ">
   <thead>
     <tr>
       <th scope="col">id</th>
       <th scope="col">regitration_number</th>
-      <th scope="col">FullName</th>
-      <th scope="col">specialitee</th>
-      <th scope="col">Contrat</th>
+      <th scope="col">name</th>
+      <th scope="col">mail</th>
       <th scope="col">phone</th>
       <th scope="col">Address</th>
-      <th scope="col">City</th>
-      <th scope="col">Niveau</th>
-      <th scope="col">Type_teacher</th>
-      <th scope="col">created at</th>
-      <th scope="col">Updated at</th>
-            <th></th>
+      <th scope="col">type teacher</th>
+
     </tr>
   </thead>
   <tbody>
     @forelse ($teachers as $obj)
     <tr>
       <th>{{$obj->id}}</th>
-      <th>{{$obj->regitration_number}}</th>
-      <td>{{$obj->fullname}}</td>
-      <td>{{$obj->specialitee}}</td>
-      <td>{{$obj->contrat}}</td>  
+      <th>{{$obj->registration_number}}</th>
+      <td>{{$obj->name}}</td>
+      <td>{{$obj->mail}}</td>
           <td>{{$obj->phone}}</td>
           <td>{{$obj->address}}</td>
-          <td>{{$obj->city}}</td>
-          <td>{{$obj->niveau}}</td>
-          <td>{{$obj->type_teacher}}</td>
+          <td>{{$obj->type->name}}</td>
 
-          <td>{{$obj->created_at}}</td>
-          <td>{{$obj->updated_at}}</td>
-      <th class ="d-flex justify-content-center align-items-center">
-        <a href="{{route('Teachers.show',$obj->id)}}"
+        <td>
+        
+        </td>
+          
+          <th class ="d-flex justify-content-center align-items-center">
+        <a href="{{route('Teachers.show',['Teacher' => $obj->id])}}"
          class="btn btn-sm btn-primary">
         <i class="fas fa-eye"></i></a>  
         <a href="{{route('Teachers.edit',$obj->id)}}"
@@ -75,6 +80,8 @@
         <i class="fas fa-trash"></i></button>  
         </form>     
       </th>
+        </form>     
+      </th>
 
     </tr>  
 @endforeach
@@ -86,7 +93,6 @@
         </div>
     </div> 
 </div>
-
 @endsection
 
 

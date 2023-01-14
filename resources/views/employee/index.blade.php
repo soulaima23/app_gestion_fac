@@ -24,45 +24,53 @@
             </div>
         </div>
 <div class="card-body">
-<h4> <a class="btn btn-primary"href="{{route('Employees.create')}}" type="button">Add new Employee</a>  </h4>    
+<a class="btn btn-outline-primary" href="http://127.0.0.1:8000/admin/home"> Back to HOME</a>
+
+<a class="btn btn-outline-primary" href="{{ route('Employees.create') }}"> Create new Employee</a>
+  </h4>
+
+</div>
+@if ($message = Session::get('success'))
+        <div class="alert alert-success">
+            <p>{{ $message }}</p>
+        </div>
+    @endif
+
 <table id="myTable" class="table table-bordered table-stripped ">
                   <thead>
                     <tr>
                       <th scope="col">regitration_number</th>
                       <th scope="col">FullName</th>
-                      <th scope="col">specialitee</th>
-                      <th scope="col">Contrat</th>
+                      <th scope="col">tache</th>
+                      <th scope="col">date anniversaire</th>
                       <th scope="col">phone</th>
                       <th scope="col">Address</th>
                       <th scope="col">City</th>
-                      <th scope="col">Niveau</th>
-                      <th scope="col">Type_teacher</th>
                       <th scope="col">created at</th>
                       <th scope="col">Updated at</th>
                     </tr>
                   </thead>
                   <tbody>
-                    @forelse ($employee as $obj)
+                    @forelse ($employes as $obj)
                     <tr>
-                      <th>{{$obj->id}}</th>
-                      <th>{{$obj->regitration_number}}</th>
+                      <th>{{$obj->registration_number}}</th>
                       <th>{{$obj->fullname}}</th>
                       <th>{{$obj->depart}}</th>
                       <th>{{$obj->hire_date}}</th>  
-                                <th>{{$obj->phone}}</th>
-                                <th>{{$obj->address}}</th>
-                                <th>{{$obj->city}}</th>
-                                <th>{{$obj->created_at}}</th>
-                                <th>{{$obj->updated_at}}</th>
+                      <th>{{$obj->phone}}</th>
+                      <th>{{$obj->address}}</th>
+                      <th>{{$obj->city}}</th>
+                      <th>{{$obj->created_at}}</th>
+                      <th>{{$obj->updated_at}}</th>
 <th>
                       <th class ="d-flex justify-content-center align-items-center">
-                            <a href="{{route('Employees.show',$obj->id)}}" class="btn btn-sm btn-primary">
+                            <a href="{{route('Employees.show',['Employee' => $obj->id])}}" class="btn btn-sm btn-primary">
                                 <i class="fas fa-eye"></i>
                             </a>  
-                            <a href="{{route('Employees.edit',$obj->id)}}" class="btn btn-sm btn-warning mx-2">
+                            <a href="{{route('Employees.edit',['Employee' => $obj->id])}}" class="btn btn-sm btn-warning mx-2">
                                  <i class="fas fa-edit"></i>
                             </a>  
-                            <form action="{{route('Employees.destroy', $obj->id)}}"  method="POST">
+                            <form action="{{route('Employees.destroy',['Employee' =>$obj->id])}}"  method="POST">
                                 @method('DELETE')
                                 @csrf
                                 <button type="submit" class="btn btn-sm btn-danger">

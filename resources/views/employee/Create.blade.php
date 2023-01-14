@@ -12,8 +12,10 @@
 @endsection
 @section('content')
 
-  
-  <form action="/action_page.php">
+<a class="btn btn-outline-primary" href="{{ route('Employees.index') }}"> Back</a>
+
+<form action="{{route('Employees.store')}}" method="POST">
+    @csrf
     <div class="form-group">
       <label for="">registration number:</label>
       <input type="text" class="form-control"   name="registration_number">
@@ -24,13 +26,13 @@
     </div>
     <div class="form-group">
       <label >departement:</label>
-      <input type="text" class="form-control" name="departement">
+      <input type="text" class="form-control" name="depart">
     </div>
     
     
     <div class="form-group">
       <label >hire date:</label>
-      <input type="text" class="form-control" name="hire_date">
+      <input type="date" class="form-control" name="hire_date">
     </div>
     <div class="form-group">
       <label >phone:</label>
@@ -47,13 +49,12 @@
     </div>
     <div class="form-group">
       <label >created at:</label>
-      <input type="text" class="form-control" name="created_at">
+      <input type="date" class="form-control" name="created_at">
     </div>
     <div class="form-group">
       <label >updated at :</label>
-      <input type="text" class="form-control" name="updated_at">
+      <input type="date" class="form-control" name="updated_at">
     </div>
-    
     @csrf
     <button type="submit" class="btn btn-default">Submit</button>
   </form>

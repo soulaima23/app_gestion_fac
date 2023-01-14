@@ -5,9 +5,12 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Student extends Model
+class student extends Model
 {
     use HasFactory;
+    protected $fillable = ["name","registration_number","mail","anniversaire","phone","address","departement_id"];
 
-    
+    public function departement(){
+        return $this->belongsTo(Departement::class);
+    }
 }

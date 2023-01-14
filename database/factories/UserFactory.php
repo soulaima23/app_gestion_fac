@@ -17,9 +17,9 @@ class UserFactory extends Factory
     {
         return [
             'name' => 'soulaima',
-            'email' => 'soulaima@email.com',
+            'email' => 'hello@email.com',
             'email_verified_at' => now(),
-            'password' => '$2y$10$q5CTJAY0ZqNC6m1sLM08/uHC0r7TwnVdzkFX/.UCR91zU.RYpG5YO', // password 'soulaima'
+            'password' =>Hash::make('hello'),//'$2y$10$q5CTJAY0ZqNC6m1sLM08/uHC0r7TwnVdzkFX/.UCR91zU.RYpG5YO',
             'remember_token' => Str::random(10),
         ];
     }

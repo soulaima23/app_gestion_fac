@@ -11,13 +11,16 @@ Update Employee | laravel university managment APP
        <h1> Update Employee   </h1>
 @endsection
 @section('content')
+<a class="btn btn-outline-primary" href="{{route('Employees.index') }}"> Back</a>
 
   
-  <form action="/action_page.php">
+  <form action="{{ route('Employees.update',$employee->id)}}" method="POST">
+        @csrf
+        @method('PUT')>
   <div class="form-group">
 
 <label for="">full name:</label>
-<input type="text" class="form-control" value="{{$employee->fullname}}"   name="registration_number">
+<input type="text" class="form-control" value="{{$employee->fullname}}"   name="fullname">
 </div>
     <div class="form-group">
 
@@ -26,7 +29,7 @@ Update Employee | laravel university managment APP
     </div>
     <div class="form-group">
       <label >departement:</label>
-      <input type="text" class="form-control"  value="{{$employee->depart}}"  name="departement">
+      <input type="text" class="form-control"  value="{{$employee->depart}}"  name="depart">
     </div>
     
     
@@ -55,7 +58,6 @@ Update Employee | laravel university managment APP
       <label >updated at :</label>
       <input type="text" class="form-control" value="{{$employee->updated_at}}" name="updated_at">
     </div>
-    
     @csrf
     <button type="submit" class="btn btn-default">Submit</button>
   </form>

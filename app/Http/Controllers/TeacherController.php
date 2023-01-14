@@ -1,9 +1,10 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Models\Teacher;
-use Illuminate\Http\Request;
 
+use Illuminate\Http\Request;
+use App\Models\Teacher;
+use App\Models\Type;
 class TeacherController extends Controller
 {
     /**
@@ -13,8 +14,12 @@ class TeacherController extends Controller
      */
     public function index()
     {
-        $teachers=Teacher::all();
-       return view ('teachers.index',compact('teachers'));
+        //
+        $teachers = Teacher::latest()->paginate(4);
+    
+        return view('teachers.index',compact('teachers'))
+            ->with('i', (request()->input('page', 1) - 1) * 4);
+
     }
 
     /**
@@ -24,8 +29,9 @@ class TeacherController extends Controller
      */
     public function create()
     {
-       
-     return view("teachers.create");
+        $types=Type::all();
+        return view('teachers.create',compact('types'));
+
     }
 
     /**
@@ -36,16 +42,11 @@ class TeacherController extends Controller
      */
     public function store(Request $request)
     {
-        
-            $request->validate([
-            'nom' => 'required',
-            ]);
-            Teacher::create($request->all());
-            return redirect()->route('teachers.index')
-            ->with('success','Teacher créé avec succès.');
-            
+        Teacher::create($request->all());
+        return view('teachers.index',['teachers'=>Teacher::all()])->with('success','Teacher créé avec succès.');
+   
     }
-
+    
 
     /**
      * Display the specified resource.
@@ -53,11 +54,13 @@ class TeacherController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Teacher $teacher)
+    public function show($id)
     {
-        return view('teachers.show',compact('teacher'));
+        //
+        $teacher= Teacher::where('id',$id)->first();
+        return view ('teachers.show')->with (['teacher'=>$teacher]);
 
-   }
+    }
 
     /**
      * Show the form for editing the specified resource.
@@ -65,10 +68,11 @@ class TeacherController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Teacher $teacher)
+    public function edit($id)
     {
-       
-        return view('teachers.edit' ,compact ('teacher'));
+        $teacher= Teacher::find($id);
+        $types=Type::all();
+        return view ('teachers.edit',compact('teacher','types'));
     }
 
     /**
@@ -80,12 +84,30 @@ class TeacherController extends Controller
      */
     public function update(Request $request, $id)
     {
+        //
         $request->validate([
-            'nom' => 'required',
-            ]);
-            $teacher->update($request->all());
-            return redirect()->route('teachers.index')
-            ->with('success','Categorie mise à jour avec succès');
+            'registration_number' => 'required',
+            'name' => 'required',
+            'mail' => 'required',
+            'phone' => 'required',
+            'address' => 'required',
+            'type_id' => 'required',
+           
+
+        ]);
+        $teacher = Teacher::find($id);
+        $teacher->registration_number =  $request->get('registration_number');
+        $teacher->name = $request->get('name');
+        $teacher->mail = $request->get('mail');
+        $teacher->phone = $request->get('phone');
+        $teacher->address = $request->get('address');
+        $teacher->type_id = $request->get('type_id');
+        $teacher->created_at = $request->get('created_at');
+        $teacher->updated_at = $request->get('updated_at');
+
+        $teacher->save();
+        return redirect()->route('Teachers.index')
+                        ->with('success','Teacher has been updated succesfully !');
     }
 
     /**
@@ -96,9 +118,10 @@ class TeacherController extends Controller
      */
     public function destroy($id)
     {
-        $teacher = teachers::find($id);
+        //
+        $teacher = Teacher::find($id);
         $teacher->delete();
-        return redirect('/');
-
+        return redirect()->route('Teachers.index')
+        ->with('success','teachers supprimé avec succès');    
     }
 }

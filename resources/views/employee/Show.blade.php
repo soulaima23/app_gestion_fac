@@ -3,58 +3,76 @@
 
 @section('title')
 
-Show Employee | laravel university managment APP
+    Show Employee | laravel university managment APP
 
 @endsection
 
-@section('content_header')
-       <h1> Show Employee   </h1>
-@endsection
 @section('content')
-
-  
-  <form action="/action_page.php">
-    <div class="form-group">
-    <h3> {{$employee->fullname}}</h3>
-
-      <label for="">registration number:</label>
-      <input type="text" class="form-control" value="{{$employee->registration_number}}"   name="registration_number">
+    <div class="row">
+        <div class="col-lg-12 margin-tb">
+            <div class="float-start">
+                <h2>Show employee</h2>
+            </div>
+            <div class="float-end">
+                <a class="btn btn-outline-primary" href="{{ route('Employees.index') }}"> Back</a>
+            </div>
+        </div>
     </div>
-    <div class="form-group">
-      <label >departement:</label>
-      <input type="text" class="form-control"  value="{{$employee->depart}}"  name="departement">
+   
+    <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12">
+            <div class="form-group">
+                <strong>registration_number:</strong>
+                {{ $employee->registration_number }}
+            </div>
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-12">
+            <div class="form-group">
+                <strong>full name:</strong>
+                {{ $employee->fullname }}
+            </div>
+        </div>
+       
+        <div class="col-xs-12 col-sm-12 col-md-12">
+            <div class="form-group">
+                <strong>departement:</strong>
+                {{ $employee->depart }}
+            </div>
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-12">
+            <div class="form-group">
+                <strong>hire date:</strong>
+                {{ $employee->hire_date }}
+            </div>
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-12">
+            <div class="form-group">
+                <strong>phone :</strong>
+                {{ $employee->phone }}
+            </div>
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-12">
+            <div class="form-group">
+                <strong>address :</strong>
+                {{ $employee->address }}
+            </div>
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-12">
+            <div class="form-group">
+                <strong>city :</strong>
+                {{ $employee->city }}
+            </div>
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-12">
+            <div class="form-group">
+                <strong>created at :</strong>
+                {{ $employee->created_at }}
+            </div>
+        </div> <div class="col-xs-12 col-sm-12 col-md-12">
+            <div class="form-group">
+                <strong>updated at :</strong>
+                {{ $employee->updated_at }}
+            </div>
+        </div>
     </div>
-    
-    
-    <div class="form-group">
-      <label >hire date:</label>
-      <input type="text" class="form-control" value="{{$employee->hire_date}}" name="hire_date">
-    </div>
-    <div class="form-group">
-      <label >phone:</label>
-      <input type="text" class="form-control" value="{{$employee->phone}}" name="phone">
-    </div>
-    
-    <div class="form-group">
-      <label >address:</label>
-      <input type="text" class="form-control" value="{{$employee->address}}" name="address">
-    </div>
-    <div class="form-group">
-      <label >city:</label>
-      <input type="text" class="form-control" value="{{$employee->city}}" name="city">
-    </div>
-    <div class="form-group">
-      <label >created at:</label>
-      <input type="text" class="form-control"  value="{{$employee->created_at}}"name="created_at">
-    </div>
-    <div class="form-group">
-      <label >updated at :</label>
-      <input type="text" class="form-control" value="{{$employee->updated_at}}" name="updated_at">
-    </div>
-    
-    @csrf
-    <button type="submit" class="btn btn-default">Submit</button>
-  </form>
-
-        </form>    
-         @endsection
+@endsection

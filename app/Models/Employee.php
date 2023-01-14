@@ -9,6 +9,8 @@ class Employee extends Model
 {
     protected $table = 'employees';
     protected $primaryKey = 'id';
+    public $incrementing = false;
+
     protected $fillable = ['registration_number', 'fullname', 'depart','hire_date','phone','address','city'];
     
 }
